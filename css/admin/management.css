@@ -1,0 +1,21 @@
+.all-btn-management {
+    margin-left: auto;
+}
+
+.title-management {
+    display: flex;
+    align-items: end;
+    margin-bottom: 4%;
+}
+
+.title-management input {
+    font-size: small;
+}
+
+.form-management {
+    padding: 4% 18% 2% 10%;
+}
+
+.form-management button {
+    margin-top: 4%;
+}
