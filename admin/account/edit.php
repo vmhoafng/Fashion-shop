@@ -14,18 +14,28 @@ if (isset($_GET['id'])) {
         $address = $_POST['address'];
 
         // check exits Email
-        $check_email = check_email($email);
         $notice = "";
 
-        // echo $check_email['user_email'];
-        // echo $email;
-        // 
-        // if exits Email
-        if ($check_email && $check_email['email_count'] > 0 && ($check_email['user_email'] != $result['user_email'])) {
-            $notice = "Email đã được sử dụng.";
+        // Regex kiểm tra
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $notice = "Email không hợp lệ.";
+        } elseif (strlen($password) < 6) {
+            $notice = "Mật khẩu phải có ít nhất 6 ký tự.";
+        } elseif (empty($username)) {
+            $notice = "Tên không được để trống.";
+        } elseif (!preg_match('/^(0|\+84)[0-9]{9}$/', $phone)) {
+            $notice = "Số điện thoại không hợp lệ.";
         } else {
-            update_user($email, $password, $username, $phone, $user_id, $role, $address);
-            header("Location: index.php?ac=account");
+            // check tồn tại email nhưng loại trừ chính user hiện tại
+            $check_email = check_email($email);
+    
+            if ($check_email && $check_email['email_count'] > 0 && ($check_email['user_email'] != $result['user_email'])) {
+                $notice = "Email đã được sử dụng.";
+            } else {
+                update_user($email, $password, $username, $phone, $user_id, $role, $address);
+                header("Location: index.php?ac=account");
+                exit;
+            }
         }
     }
 }

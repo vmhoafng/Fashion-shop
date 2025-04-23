@@ -28,9 +28,6 @@
             <script>
             document.write(new Date().getFullYear());
             </script>
-            All rights reserved | Made with by
-            <a href="https://colorlib.com" target="_blank">Quốc Tuấn SGU</a>
-            <i class="fa fa-heart" style="color:red"></i>
         </p>
     </div>
 </footer>

@@ -3,12 +3,12 @@
         $sql="SELECT * FROM `order` WHERE 1";
         return pdo_query($sql);
     }
-    function totalRevenue(){
-        $sql="SELECT SUM(total) as total FROM `order` WHERE 1";
+    function totalRevenue() {
+        $sql = "SELECT SUM(total) as total FROM `order` WHERE status_id != 5"; // Loại trừ đơn hàng đã hủy
         return pdo_query_value($sql);
     }
     function getOrderDetailByOrderId($id){
-        echo '<sript>console.log("order id '.$id.'")</script>';
+        echo '<script>console.log("order id '.$id.'")</script>';
         $sql="SELECT * FROM `orderdetail` WHERE  order_id=".$id;
         return pdo_query($sql);
     }
@@ -33,19 +33,29 @@
         return pdo_query_value($sql);
     }
     function top5MostProfitUserFromdateToDate($fromDate,$toDate){
-        $sql="SELECT user_id, SUM(total) as total FROM `order` WHERE order_created_date BETWEEN '".$fromDate."' AND '".$toDate."' GROUP BY user_id ORDER BY total DESC LIMIT 5";
+        $sql = "SELECT user_id, SUM(total) as total 
+            FROM `order` 
+            WHERE order_created_date BETWEEN '".$fromDate."' AND '".$toDate."'
+            AND status_id != 5  -- Loại trừ đơn hàng đã hủy
+            GROUP BY user_id 
+            ORDER BY total DESC 
+            LIMIT 5";
         return pdo_query($sql);
     }
-    function getOrderByUserId($id){
-        $sql="SELECT * FROM `order` WHERE user_id=".$id;
+    function getOrderByUserId($userId) {
+        $sql = "SELECT * FROM `order` WHERE user_id = $userId AND status_id != 5";  // Loại trừ đơn hàng đã hủy (status_id = 5)
         return pdo_query($sql);
     }
+    
     function totalRevenueOfOrders($orders){
-        $total=0;
-        foreach($orders as $order){
-            $total+=$order['total'];
+        $totalRevenue = 0;
+    foreach ($orders as $order) {
+        // Chỉ tính doanh thu của đơn hàng có status_id khác 5 (không phải đã hủy)
+        if ($order['status_id'] != 5) {
+            $totalRevenue += $order['total'];
         }
-        return $total;
+    }
+    return $totalRevenue;
     }
     function searchProductByName($name){
         $sql="SELECT * FROM product WHERE product_name LIKE '%".$name."%'";
