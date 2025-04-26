@@ -145,9 +145,7 @@
             <p class="stext-107 cl6 txt-center">
                 Copyright &copy;
                 <script>document.write(new Date().getFullYear());</script>
-                All rights reserved | Made with by 
-                <a href="https://colorlib.com" target="_blank"> Quoc Tuan SGU </a>
-                <i class="fa fa-heart" style="color:red"></i>
+                All rights reserved
             </p>
         </div>
     </div>

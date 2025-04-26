@@ -39,7 +39,7 @@
 
                 <div class="sidebar-header">
                     <div class="user-pic">
-                        <img class="img-responsive img-rounded" src="../images/tran-hao-nam.jpg" alt="User picture">
+                        <img class="img-responsive img-rounded" src="../images/admin.jpg" alt="User picture">
                     </div>
                     
                     <div class="user-info">
