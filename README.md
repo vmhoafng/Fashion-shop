@@ -1,3 +1,0 @@
-3120410083	Nguyễn Văn Dũng
-3121410561	Phạm Quốc Tuấn
-3120410338	Trần Sĩ	Nam

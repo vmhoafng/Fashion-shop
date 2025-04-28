@@ -1,239 +1,264 @@
-<!-- Viết các hàm truy vấn sql của sản phẩm như: thêm sản phẩm, xóa sản phẩm, lấy thông tin sản phẩm, cập nhật thông tin sản phẩm... -->
-<!-- Ví dụ
-    // hàm thêm sản phẩm mới
-    function add_product($ten_sp, $gia_sp, $fileName, $mota_sp, $ma_dm, $gia_ban) {
-        $sql = "INSERT INTO sanpham(ten_sp, gia_sp, anh_sp, mota_sp, luotxem_sp, ma_dm, trangthai, gia_ban) VALUES('$ten_sp', '$gia_sp', '$fileName', '$mota_sp', 0, '$ma_dm', 1, '$gia_ban')";
-        pdo_execute($sql);
-    } 
--->
 <?php
- function loadSanPham_Product(){
-    $sql="select * from product where hidden=0 order by product_name";
+// Hàm lấy danh sách sản phẩm không bị ẩn, sắp xếp theo tên
+function loadSanPham_Product() {
+    $sql = "SELECT * FROM product WHERE hidden = 0 ORDER BY product_name";
     return pdo_query($sql);
 }
-function loadSanPham_OrderByProductId(){
-    $sql="select * from product order by product_id";
+
+// Hàm lấy danh sách sản phẩm, sắp xếp theo product_id
+function loadSanPham_OrderByProductId() {
+    $sql = "SELECT * FROM product ORDER BY product_id";
     return pdo_query($sql);
 }
-function addProduct($product_name,$product_price,$product_color,$product_category,$product_image,$product_description,$product_size){
-    $sql="insert into product(product_name,product_price,product_color,category_id,product_image,product_description,product_size) values('".$product_name."','".$product_price."','".$product_color."','".$product_category."','".$product_image."','".$product_description."','".$product_size."')";
+
+// Hàm thêm sản phẩm mới (đã thêm amount)
+function addProduct($product_name, $product_price, $product_color, $product_category, $product_image, $product_description, $product_size, $product_amount) {
+    $sql = "INSERT INTO product (product_name, product_price, product_color, category_id, product_image, product_description, product_size, amount) 
+            VALUES ('$product_name', '$product_price', '$product_color', '$product_category', '$product_image', '$product_description', '$product_size', '$product_amount')";
     pdo_execute($sql);
     echo '<script>console.log("'.$sql.'")</script>';
 }
- function searchFunction($searchText) {
-    $sql= "select * from product where 1";
-    $sql.=" and product_name like '%".$searchText."%'";
-    $listProduct=pdo_query($sql);
+
+// Hàm tìm kiếm sản phẩm theo từ khóa
+function searchFunction($searchText) {
+    $sql = "SELECT * FROM product WHERE product_name LIKE '%$searchText%'";
+    $listProduct = pdo_query($sql);
     return $listProduct;
 }
-function loadAllCategory(){
-    $sql= "select * from categories";
-    $listCategories=pdo_query($sql);
+
+// Hàm lấy tất cả danh mục
+function loadAllCategory() {
+    $sql = "SELECT * FROM categories";
+    $listCategories = pdo_query($sql);
     return $listCategories;
 }
-function loadProductByCategory($categoryId){
-    $sql= 'select * from product where hidden=0 and product.category_id='.$categoryId;
-    $listProduct=pdo_query($sql);
-    return $listProduct;
-}
-function loadProductByPageIdx($pageIndex,$pageSize){
-    $offSet=($pageIndex-1)*$pageSize;
-    $sql='Select * from product limit '.$offSet.','.$pageSize;
 
-    $listProduct=pdo_query($sql);
+// Hàm lấy sản phẩm theo danh mục
+function loadProductByCategory($categoryId) {
+    $sql = "SELECT * FROM product WHERE hidden = 0 AND category_id = $categoryId";
+    $listProduct = pdo_query($sql);
     return $listProduct;
+}
 
-}
-function loadProductByPageIdxAndCategory($pageIndex,$pageSize,$categoryId){
-    $offSet=($pageIndex-1)*$pageSize;
-    $sql='Select * from product where product.category_id = '.$categoryId.' limit '.$offSet.','.$pageSize;
-    // $sql='Select * from product limit '.$offSet.','.$pageSize.' where product.category_id='.$categoryId;
-    $listProduct=pdo_query($sql);
+// Hàm lấy sản phẩm theo trang
+function loadProductByPageIdx($pageIndex, $pageSize) {
+    $offSet = ($pageIndex - 1) * $pageSize;
+    $sql = "SELECT * FROM product LIMIT $offSet, $pageSize";
+    $listProduct = pdo_query($sql);
     return $listProduct;
 }
-function totalPage($listProduct,$pageSize){
-    $totalPage=ceil(count($listProduct)/$pageSize);
+
+// Hàm lấy sản phẩm theo trang và danh mục
+function loadProductByPageIdxAndCategory($pageIndex, $pageSize, $categoryId) {
+    $offSet = ($pageIndex - 1) * $pageSize;
+    $sql = "SELECT * FROM product WHERE category_id = $categoryId LIMIT $offSet, $pageSize";
+    $listProduct = pdo_query($sql);
+    return $listProduct;
+}
+
+// Hàm tính tổng số trang
+function totalPage($listProduct, $pageSize) {
+    $totalPage = ceil(count($listProduct) / $pageSize);
     return $totalPage;
 }
-function loadProductByColor($color){
-    $sql= 'select * from product where hidden=0 and product.product_color='.$color;
-    $listProduct=pdo_query($sql);
+
+// Hàm lấy sản phẩm theo màu sắc
+function loadProductByColor($color) {
+    $sql = "SELECT * FROM product WHERE hidden = 0 AND product_color = '$color'";
+    $listProduct = pdo_query($sql);
     return $listProduct;
 }
+
+// Hàm lấy danh sách màu sắc duy nhất từ sản phẩm
 function getUniqueProductColors($listProduct) {
     $uniqueColors = [];
-
-    foreach($listProduct as $product) {
-        // Check if the product color is not already in the uniqueColors array
-        if(!in_array($product['product_color'], $uniqueColors)) {
-            // Add the product color to the uniqueColors array
+    foreach ($listProduct as $product) {
+        if (!in_array($product['product_color'], $uniqueColors)) {
             $uniqueColors[] = $product['product_color'];
         }
     }
-
     return $uniqueColors;
 }
-function getUniqueProductSize($listProduct){
-    $uniqueSize=[];
-    foreach($listProduct as $product){
-        if(!in_array($product['product_size'],$uniqueSize)){
-            $uniqueSize[]=$product['product_size'];
+
+// Hàm lấy danh sách kích thước duy nhất từ sản phẩm
+function getUniqueProductSize($listProduct) {
+    $uniqueSize = [];
+    foreach ($listProduct as $product) {
+        if (!in_array($product['product_size'], $uniqueSize)) {
+            $uniqueSize[] = $product['product_size'];
         }
     }
     return $uniqueSize;
-
 }
-function filterProductByColor($color){
-    $sql= "select * from product where product.product_color='".$color."'";
-    $listProudct=pdo_query($sql);
-    return $listProudct;
-}
-function constructQuery($color = null, 
-                    $category = null, $searchKeywork = null,
-                    $minPrice=null,$maxPrice=null) {
-    $sql = "SELECT * FROM product WHERE 1 and hidden=0 ";
 
-    // Add conditions based on the provided arguments
-    if ($color !== null && $color!=='') {
-        $sql .= " AND product_color = '".$color."'";
-    }
-    if ($category !== null && $category!=='') {
-        $sql .= " AND category_id = ".$category;
-    }
-    // Add additional conditions as needed
+// Hàm lọc sản phẩm theo màu sắc
+function filterProductByColor($color) {
+    $sql = "SELECT * FROM product WHERE product_color = '$color'";
+    $listProduct = pdo_query($sql);
+    return $listProduct;
+}
+
+// Hàm xây dựng truy vấn SQL động
+function constructQuery($color = null, $category = null, $searchKeyword = null, $minPrice = null, $maxPrice = null) {
+    $sql = "SELECT * FROM product WHERE hidden = 0";
     
-    // Add search  clause
-    if ($searchKeywork !== null && $searchKeywork!='') {
-        $sql .= " and product_name like '%".$searchKeywork."%'";
+    if ($color !== null && $color !== '') {
+        $sql .= " AND product_color = '$color'";
     }
-    
-    if($minPrice!==null && $maxPrice!==null && $minPrice!='' && $maxPrice!='' ){
-        $sql.=' and product_price between '.$minPrice.' and '.$maxPrice.'';
+    if ($category !== null && $category !== '') {
+        $sql .= " AND category_id = $category";
+    }
+    if ($searchKeyword !== null && $searchKeyword !== '') {
+        $sql .= " AND product_name LIKE '%$searchKeyword%'";
+    }
+    if ($minPrice !== null && $maxPrice !== null && $minPrice !== '' && $maxPrice !== '') {
+        $sql .= " AND product_price BETWEEN $minPrice AND $maxPrice";
         echo "<script>console.log('Debug Objects: " . $sql . "' );</script>";
     }
-    // if($pageIdx!==null && $pageSize!=''){
-    //     if($pageIdx==1){
-    //         $sql.=' limit '.($pageIdx-1).','.$pageSize;
-    //     }
-    //     else{
-    //         $sql.=' limit '.($pageIdx-1)+$pageSize.','.$pageSize;
-    //     }
-
-    // }
     
-
     return $sql;
 }
-function filterBy($color = null, $category = null, $searchKeywork = null
-,$minPrice=null,$maxPrice=null){
-    $sql=constructQuery($color, $category, $searchKeywork,$minPrice,$maxPrice);
-    $listProduct=pdo_query($sql);
+
+// Hàm lọc sản phẩm theo các tiêu chí
+function filterBy($color = null, $category = null, $searchKeyword = null, $minPrice = null, $maxPrice = null) {
+    $sql = constructQuery($color, $category, $searchKeyword, $minPrice, $maxPrice);
+    $listProduct = pdo_query($sql);
     return $listProduct;
 }
 
-function advanceSearch($searchKeywork=null,$categoryFilter=null,$colorFilter=null,$sizeFilter=null,$priceFilter=null){
-   $sql="select * from product where 1 and hidden=0 ";
-    if($searchKeywork!==null && $searchKeywork!=''){
-         $sql.=" and product_name like '%".$searchKeywork."%'";
+// Hàm tìm kiếm nâng cao
+function advanceSearch($searchKeyword = null, $categoryFilter = null, $colorFilter = null, $sizeFilter = null, $priceFilter = null) {
+    $sql = "SELECT * FROM product WHERE hidden = 0";
+    
+    if ($searchKeyword !== null && $searchKeyword !== '') {
+        $sql .= " AND product_name LIKE '%$searchKeyword%'";
     }
-    if(!empty($categoryFilter)){
-        $count=count($categoryFilter);
-        $idx=0;
-        $sql.=" and (";
-        foreach($categoryFilter as $category){
+    if (!empty($categoryFilter)) {
+        $count = count($categoryFilter);
+        $idx = 0;
+        $sql .= " AND (";
+        foreach ($categoryFilter as $category) {
             $idx++;
-            if($idx==$count){
-                $sql.=" category_id=".$category;
-            }
-            else{
-                $sql.=" category_id=".$category." or";
+            if ($idx == $count) {
+                $sql .= " category_id = $category";
+            } else {
+                $sql .= " category_id = $category OR";
             }
         }
-        $sql.=")";
+        $sql .= ")";
     }
-    if(!empty($colorFilter)){
-        $count=count($colorFilter);
-        $idx=0;
-        $sql.=" and (";
-        foreach($colorFilter as $color){
+    if (!empty($colorFilter)) {
+        $count = count($colorFilter);
+        $idx = 0;
+        $sql .= " AND (";
+        foreach ($colorFilter as $color) {
             $idx++;
-            if($idx==$count){
-                $sql.=" product_color='".$color."'";
-            }
-            else{
-                $sql.=" product_color='".$color."' or";
+            if ($idx == $count) {
+                $sql .= " product_color = '$color'";
+            } else {
+                $sql .= " product_color = '$color' OR";
             }
         }
-        $sql.=")";
+        $sql .= ")";
     }
-    if(!empty($sizeFilter)){
-        $count=count($sizeFilter);
-        $idx=0;
-        $sql.=" and (";
-        foreach($sizeFilter as $size){
+    if (!empty($sizeFilter)) {
+        $count = count($sizeFilter);
+        $idx = 0;
+        $sql .= " AND (";
+        foreach ($sizeFilter as $size) {
             $idx++;
-            if($idx==$count){
-                $sql.=" product_size='".$size."'";
-            }
-            else{
-                $sql.=" product_size='".$size."' or";
+            if ($idx == $count) {
+                $sql .= " product_size = '$size'";
+            } else {
+                $sql .= " product_size = '$size' OR";
             }
         }
-        $sql.=")";
+        $sql .= ")";
     }
-    if(!empty($priceFilter)){
-        $count=count($priceFilter);
-        $idx=0;
-        $sql.=" and (";
-        foreach($priceFilter as $price){
+    if (!empty($priceFilter)) {
+        $count = count($priceFilter);
+        $idx = 0;
+        $sql .= " AND (";
+        foreach ($priceFilter as $price) {
             $idx++;
-            if($idx==$count){
-                $sql.="( product_price ".$price.")";
-            }
-            else{
-                $sql.="(product_price ".$price.") or";
+            if ($idx == $count) {
+                $sql .= "( product_price $price)";
+            } else {
+                $sql .= "(product_price $price) OR";
             }
         }
-        $sql.=")";
+        $sql .= ")";
     }
     echo '<script>console.log("'.$sql.'")</script>';
-    $listProduct=pdo_query($sql);
+    $listProduct = pdo_query($sql);
     return $listProduct;
-
 }
-function getProductByProductId($id){
-    $sql='select * from product where product_id='.$id;
-    $productDetail=pdo_query_one($sql);
+
+// Hàm lấy thông tin sản phẩm theo product_id
+function getProductByProductId($id) {
+    $sql = "SELECT * FROM product WHERE product_id = $id";
+    $productDetail = pdo_query_one($sql);
     return $productDetail;
 }
-//cheat
-function getCategoryNameById($id){
-    $sql='select category_name from categories where category_id='.$id;
-    $categoryName=pdo_query_value($sql);
+
+// Hàm lấy tên danh mục theo category_id
+function getCategoryNameById($id) {
+    $sql = "SELECT category_name FROM categories WHERE category_id = $id";
+    $categoryName = pdo_query_value($sql);
     return $categoryName;
 }
-function hideProduct($id){
+
+// Hàm ẩn sản phẩm
+function hideProduct($id) {
     $sql = "UPDATE product SET hidden = 1 WHERE product_id = $id";
     pdo_execute($sql);
 }
-function editProduct($product_id,$product_name,$product_price,$product_color,$product_category,$product_image,$product_description,$product_size,$product_status){
-    $sql="update product set category_id='".$product_category."', product_name='".$product_name."',product_size='".$product_size."',product_price='".$product_price."',product_description='".$product_description."',product_color='".$product_color."' ,product_image='".$product_image."' , hidden=".$product_status." where product_id='".$product_id."'";
+
+// Hàm sửa thông tin sản phẩm (đã thêm amount)
+function editProduct($product_id, $product_name, $product_price, $product_color, $product_category, $product_image, $product_description, $product_size, $product_status, $product_amount) {
+    $sql = "UPDATE product 
+            SET category_id = '$product_category', 
+                product_name = '$product_name', 
+                product_size = '$product_size', 
+                product_price = '$product_price', 
+                product_description = '$product_description', 
+                product_color = '$product_color', 
+                product_image = '$product_image', 
+                hidden = $product_status, 
+                amount = $product_amount 
+            WHERE product_id = '$product_id'";
     echo '<script>console.log("'.$sql.'")</script>';
     pdo_execute($sql);
 }
 
-
+// Hàm lấy thông tin sản phẩm
 function get_info_product($product_id) {
     $sql = "SELECT * FROM product WHERE product_id = $product_id";
     return pdo_query_one($sql);
 }
 
-function edituser($user_id,$user_name,$user_email,$user_phoneNumber,$user_address){
-    $sql="update user set user_name='".$user_name."',user_email='".$user_email."',user_phoneNumber='".$user_phoneNumber."',user_address='".$user_address."' where user_id='".$user_id."'";
+// Hàm sửa thông tin người dùng
+function edituser($user_id, $user_name, $user_email, $user_phoneNumber, $user_address) {
+    $sql = "UPDATE user 
+            SET user_name = '$user_name', 
+                user_email = '$user_email', 
+                user_phoneNumber = '$user_phoneNumber', 
+                user_address = '$user_address' 
+            WHERE user_id = '$user_id'";
     pdo_execute($sql);
 }
-function changePassword($user_id,$newPassword){
-    $sql="update user set user_password='".$newPassword."' where user_id='".$user_id."'";
+
+// Hàm thay đổi mật khẩu người dùng
+function changePassword($user_id, $newPassword) {
+    $sql = "UPDATE user SET user_password = '$newPassword' WHERE user_id = '$user_id'";
+    pdo_execute($sql);
+}
+
+// Hàm giảm số lượng sản phẩm khi thêm vào giỏ hàng
+function decreaseProductAmount($product_id, $quantity) {
+    $sql = "UPDATE product 
+            SET amount = amount - $quantity 
+            WHERE product_id = $product_id AND amount >= $quantity";
     pdo_execute($sql);
 }
 ?>
