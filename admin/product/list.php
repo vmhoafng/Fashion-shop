@@ -28,70 +28,84 @@ $products = array_slice($products, ($pageIndex - 1) * $pageSize, $pageSize);
 
 <main class="page-content">
     <div class="container-fluid">
-        <div>
-            <h2>Quản lý sản phẩm</h2>
-            <a href="index.php?ac=product&act=add"><i class="fa fa-plus mr-1"></i>Thêm sản phẩm mới</a>
+        <div class="title-management">
+            <h3>Product Management</h3>
+            <a href="index.php?ac=product&act=add" class="btn all-btn-management btn-success">
+                <i class="fa fa-plus"></i> Add New Product
+            </a>
         </div>
-        <div class="form-group mt-1 ml-3">
-            <form method="POST" class="row m-l-5 pl-0 pt-0 pb-0 pr-0">
-                <input type="text" class="form-control col-2 mr-2" name="search" placeholder="Tìm kiếm">
-                <button type="submit" class="btn btn-primary col-2 mt-0">Tìm kiếm theo tên sản phẩm</button>
-                <a href="index.php?ac=product" class="ml-1 btn btn-primary">Tải lại</a>
-            </form>
-        </div>
-        <table class="table table-hover">
-            <tr class="table-header">
-                <th>Mã sản phẩm</th>
-                <th>Tên sản phẩm</th>
-                <th>Giá sản phẩm ($)</th>
-                <th>Màu sắc</th>
-                <th>Kích thước</th>
-                <th>Danh mục</th>
-                <th>Hình ảnh</th>
-                <th>Mô tả</th>
-                <th>Trạng thái</th>
-                <th>Số lượng</th>
-                <th>Hành động</th>
-            </tr>
-            <?php foreach ($products as $product) { ?>
-            <tr>
-                <td><?php echo $product['product_id']; ?></td>
-                <td><a
-                        href="../index.php?ac=productDetail&id=<?php echo $product['product_id']; ?>"><?php echo $product['product_name']; ?></a>
-                </td>
-                <td><?php echo $product['product_price']; ?></td>
-                <td><?php echo $product['product_color']; ?></td>
-                <td><?php echo $product['product_size']; ?></td>
-                <td><?php echo strval(getCategoryNameById($product['category_id'])); ?></td>
-                <td><img style="width:50px;height:50px"
-                        src="data:image/jpeg;base64,<?php echo base64_encode($product['product_image']); ?>"
-                        alt="IMG-PRODUCT"></td>
-                <td><?php echo $product['product_description']; ?></td>
-                <td><?php echo $product['hidden'] == 0 ? "Hiển thị" : "Ẩn"; ?></td>
-                <td><?php echo $product['amount']; ?></td>
-                <td>
-                    <a href="index.php?ac=product&act=edit&id=<?php echo $product['product_id']; ?>"><i
-                            class="fa fa-pen mr-2"></i></a>
-                    <a href="index.php?ac=product&act=delete&id=<?php echo $product['product_id']; ?>"><i
-                            class="fa fa-trash"></i></a>
-                </td>
-            </tr>
-            <?php } ?>
+        <hr>
+        <form method="POST" class="form-management row align-items-center">
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="search" placeholder="Search Products" value="<?= htmlspecialchars($searchTerm); ?>">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-block">Search</button>
+            </div>
+            <div class="col-sm-2">
+                <a href="index.php?ac=product" class="btn btn-secondary btn-block">Reload</a>
+            </div>
+        </form>
+        <table class="table table-hover mt-4">
+            <thead>
+                <tr class="table-header">
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Price ($)</th>
+                    <th>Color</th>
+                    <th>Size</th>
+                    <th>Category</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Quantity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($products as $product) { ?>
+                    <tr>
+                        <td><?= htmlspecialchars($product['product_id']); ?></td>
+                        <td>
+                            <a href="../index.php?ac=productDetail&id=<?= $product['product_id']; ?>">
+                                <?= htmlspecialchars($product['product_name']); ?>
+                            </a>
+                        </td>
+                        <td><?= htmlspecialchars($product['product_price']); ?></td>
+                        <td><?= htmlspecialchars($product['product_color']); ?></td>
+                        <td><?= htmlspecialchars($product['product_size']); ?></td>
+                        <td><?= htmlspecialchars(strval(getCategoryNameById($product['category_id']))); ?></td>
+                        <td>
+                            <img style="width:50px;height:50px" 
+                                 src="data:image/jpeg;base64,<?= base64_encode($product['product_image']); ?>" 
+                                 alt="IMG-PRODUCT">
+                        </td>
+                        <td><?= htmlspecialchars($product['product_description']); ?></td>
+                        <td><?= $product['hidden'] == 0 ? "Visible" : "Hidden"; ?></td>
+                        <td><?= htmlspecialchars($product['amount']); ?></td>
+                        <td>
+                            <a href="index.php?ac=product&act=edit&id=<?= $product['product_id']; ?>" class="btn btn-sm btn-warning">
+                                <i class="fa fa-pen"></i>
+                            </a>
+                            <a href="index.php?ac=product&act=delete&id=<?= $product['product_id']; ?>" class="btn btn-sm btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
         </table>
         <div class="mt-5">
             <ul class="pagination justify-content-center">
                 <?php
-                echo '<div id="paginationForm" class="row m-l-5">';
-                if ($totalPage > 1) {
-                    for ($i = 1; $i <= $totalPage; $i++) {
-                        if (empty($searchTerm)) {
-                            echo "<li class='page-item'><a href='index.php?ac=product&page=$i' class='page-link' name='page'>$i</a></li>";
-                        } else {
-                            echo "<li class='page-item'><a href='index.php?ac=product&page=$i&search=$searchTerm' class='page-link' name='page'>$i</a></li>";
+                    if ($totalPage > 1) {
+                        for ($i = 1; $i <= $totalPage; $i++) {
+                            $link = empty($searchTerm) 
+                                ? "index.php?ac=product&page=$i" 
+                                : "index.php?ac=product&page=$i&search=" . urlencode($searchTerm);
+                            echo "<li class='page-item'><a href='$link' class='page-link'>$i</a></li>";
                         }
                     }
-                }
-                echo '</div>';
                 ?>
             </ul>
         </div>
