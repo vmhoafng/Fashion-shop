@@ -8,11 +8,13 @@
 <div>Tên người nhận: <?= $_SESSION['user']['user_name'] ?></div>
 <div>SĐT: <?= $_SESSION['user']['user_phoneNumber']?></div>
 <?php
-    if(!empty($bill)) {
-        foreach($bill as $item) {
-            extract($item);
-        }
-    }
+$address_order = '';
+$payment = '';
+
+if (!empty($bill) && isset($bill[0]['address_order'])) {
+    $address_order = $bill[0]['address_order'];
+    $payment = $bill[0]['payment'];
+}
 ?>
 <div>Địa chỉ nhận hàng: <?= $address_order ?></div>
 <div>Phương thức thanh toán: <?= $payment ?></div>
