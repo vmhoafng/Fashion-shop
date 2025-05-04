@@ -4,7 +4,7 @@
         return pdo_query($sql);
     }
     function totalRevenue() {
-        $sql = "SELECT SUM(total) as total FROM `order` WHERE status_id != 5"; // Loại trừ đơn hàng đã hủy
+        $sql = "SELECT SUM(total) as total FROM `order` WHERE status_id = 4"; // Loại trừ đơn hàng đã hủy
         return pdo_query_value($sql);
     }
     function getOrderDetailByOrderId($id){
@@ -36,14 +36,14 @@
         $sql = "SELECT user_id, SUM(total) as total 
             FROM `order` 
             WHERE order_created_date BETWEEN '".$fromDate."' AND '".$toDate."'
-            AND status_id != 5  -- Loại trừ đơn hàng đã hủy
+            AND status_id = 4  -- Loại trừ đơn hàng đã hủy
             GROUP BY user_id 
             ORDER BY total DESC 
             LIMIT 5";
         return pdo_query($sql);
     }
     function getOrderByUserId($userId) {
-        $sql = "SELECT * FROM `order` WHERE user_id = $userId AND status_id != 5";  // Loại trừ đơn hàng đã hủy (status_id = 5)
+        $sql = "SELECT * FROM `order` WHERE user_id = $userId AND status_id = 4";  // Loại trừ đơn hàng đã hủy (status_id = 5)
         return pdo_query($sql);
     }
     
@@ -51,7 +51,7 @@
         $totalRevenue = 0;
     foreach ($orders as $order) {
         // Chỉ tính doanh thu của đơn hàng có status_id khác 5 (không phải đã hủy)
-        if ($order['status_id'] != 5) {
+        if ($order['status_id'] = 4) {
             $totalRevenue += $order['total'];
         }
     }

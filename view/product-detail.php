@@ -2,66 +2,16 @@
 $currentProduct = get_info_product($_GET['id']);
 $categoryId = getCategoryIdByProductId($currentProduct['product_id']);
 $categoryName = getCategoryNameById($categoryId);
+$listProduct = loadSanPham_Product();
+
 ?>
 
 <!-- Cart -->
-<div class="wrap-header-cart js-panel-cart">
-    <div class="s-full js-hide-cart"></div>
-    <div class="header-cart flex-col-l p-l-65 p-r-25">
-        <div class="header-cart-title flex-w flex-sb-m p-b-8">
-            <span class="mtext-103 cl2">Giỏ hàng của bạn</span>
-            <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
-                <i class="zmdi zmdi-close"></i>
-            </div>
-        </div>
-        <div class="header-cart-content flex-w js-pscroll">
-            <ul class="header-cart-wrapitem w-full">
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="images/item-cart-01.jpg" alt="IMG">
-                    </div>
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">Áo sơ mi trắng</a>
-                        <span class="header-cart-item-info">1 x $19.00</span>
-                    </div>
-                </li>
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="images/item-cart-02.jpg" alt="IMG">
-                    </div>
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">Giày Converse All Star</a>
-                        <span class="header-cart-item-info">1 x $39.00</span>
-                    </div>
-                </li>
-                <li class="header-cart-item flex-w flex-t m-b-12">
-                    <div class="header-cart-item-img">
-                        <img src="images/item-cart-03.jpg" alt="IMG">
-                    </div>
-                    <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">Đồng hồ Nixon Porter</a>
-                        <span class="header-cart-item-info">1 x $17.00</span>
-                    </div>
-                </li>
-            </ul>
-            <div class="w-full">
-                <div class="header-cart-total w-full p-tb-40">Tổng cộng: $75.00</div>
-                <div class="header-cart-buttons flex-w w-full">
-                    <a href="shoping-cart.html"
-                        class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">Xem giỏ
-                        hàng</a>
-                    <a href="shoping-cart.html"
-                        class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10">Thanh toán</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Breadcrumb -->
 <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-        <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+        <a href="index" class="stext-109 cl8 hov-cl1 trans-04">
             Trang chủ
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
@@ -330,214 +280,56 @@ $categoryName = getCategoryNameById($categoryId);
             <h3 class="ltext-106 cl5 txt-center">Sản phẩm liên quan</h3>
         </div>
         <div class="wrap-slick2">
-            <div class="slick2">
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="images/product-01.jpg" alt="IMG-PRODUCT">
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">Xem
-                                nhanh</a>
+        
+<div class="slick2">
+    <?php
+    if (count($listProduct) > 0) {
+        foreach ($listProduct as $product) {
+            extract($product);
+            $stock = $product['amount'] ?? 0;
+            echo "<div class='item-slick2 p-l-15 p-r-15 p-t-15 p-b-15'>
+                    <div class='block2'>
+                        <div class='block2-pic hov-img0' style='position: relative;'>
+                            <img style='width: 315px; height: 390.06px;' src='data:image/jpeg;base64," . base64_encode($product_image) . "' alt='IMG-PRODUCT'>";
+                            // Hiển thị lớp phủ \"Hết hàng\" nếu amount <= 0
+                            if ($stock <= 0) {
+                                echo "<div class='out-of-stock-overlay'>Hết hàng</div>";
+                            }
+                            echo "<a href='index.php?ac=productDetail&id=$product_id'
+                               class='block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04'>
+                               Chi tiết
+                            </a>
                         </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">Áo
-                                    sơ mi Esprit Ruffle</a>
-                                <span class="stext-105 cl3">$16.64</span>
+                        <div class='block2-txt flex-w flex-t p-t-14'>
+                            <div class='block2-txt-child1 flex-col-l'>
+                                <a href='index.php?ac=productDetail&id=$product_id' class='stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6'>
+                                    $product_name
+                                </a>
+                                <span class='stext-105 cl3'>$product_price $</span>
                             </div>
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="images/icons/icon-heart-02.png" alt="ICON">
+                            <div class='block2-txt-child2 flex-r p-t-3'>
+                                <a href='#' class='btn-addwish-b2 dis-block pos-relative js-addwish-b2'>
+                                    <img class='icon-heart1 dis-block trans-04' src='images/icons/icon-heart-01.png'
+                                         alt='ICON'>
+                                    <img class='icon-heart2 dis-block trans-04 ab-t-l'
+                                         src='images/icons/icon-heart-02.png' alt='ICON'>
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="images/product-02.jpg" alt="IMG-PRODUCT">
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">Xem
-                                nhanh</a>
-                        </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l">
-                                <a href="product-detail.html"
-                                    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">Herschel supply</a>
-                                <span class="stext-105 cl3">$35.31</span>
-                            </div>
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="images/icons/icon-heart-02.png" alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="images/product-03.jpg" alt="IMG-PRODUCT">
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">Xem
-                                nhanh</a>
-                        </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l">
-                                <a href="product-detail.html"
-                                    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">Quần Only Check</a>
-                                <span class="stext-105 cl3">$25.50</span>
-                            </div>
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="images/icons/icon-heart-02.png" alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="images/product-04.jpg" alt="IMG-PRODUCT">
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">Xem
-                                nhanh</a>
-                        </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">Áo
-                                    khoác Classic Trench</a>
-                                <span class="stext-105 cl3">$75.00</span>
-                            </div>
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="images/icons/icon-heart-02.png" alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="images/product-05.jpg" alt="IMG-PRODUCT">
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">Xem
-                                nhanh</a>
-                        </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">Áo
-                                    Jumper có túi trước</a>
-                                <span class="stext-105 cl3">$34.75</span>
-                            </div>
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="images/icons/icon-heart-02.png" alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="images/product-06.jpg" alt="IMG-PRODUCT">
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">Xem
-                                nhanh</a>
-                        </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l">
-                                <a href="product-detail.html"
-                                    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">Đồng hồ Vintage Classic</a>
-                                <span class="stext-105 cl3">$93.20</span>
-                            </div>
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="images/icons/icon-heart-02.png" alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="images/product-07.jpg" alt="IMG-PRODUCT">
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">Xem
-                                nhanh</a>
-                        </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">Áo
-                                    sơ mi cotton</a>
-                                <span class="stext-105 cl3">$52.66</span>
-                            </div>
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="images/icons/icon-heart-02.png" alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                    <div class="block2">
-                        <div class="block2-pic hov-img0">
-                            <img src="images/product-08.jpg" alt="IMG-PRODUCT">
-                            <a href="#"
-                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">Xem
-                                nhanh</a>
-                        </div>
-                        <div class="block2-txt flex-w flex-t p-t-14">
-                            <div class="block2-txt-child1 flex-col-l">
-                                <a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">Áo
-                                    thun Pieces Metallic</a>
-                                <span class="stext-105 cl3">$18.96</span>
-                            </div>
-                            <div class="block2-txt-child2 flex-r p-t-3">
-                                <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png"
-                                        alt="ICON">
-                                    <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="images/icons/icon-heart-02.png" alt="ICON">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </div>";
+        }
+    } else {
+        echo "<div class='item-slick2 p-l-15 p-r-15 p-t-15 p-b-15'><h1>Không có sản phẩm nào khớp với mô tả của bạn</h1></div>";
+    }
+    ?>
+</div>
         </div>
     </div>
 </section>
 
 <!-- Modal1 -->
-<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+<!-- <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
     <div class="overlay-modal1 js-hide-modal1"></div>
     <div class="container">
         <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
@@ -666,4 +458,4 @@ $categoryName = getCategoryNameById($categoryId);
             </div>
         </div>
     </div>
-</div>
+</div> -->
