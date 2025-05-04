@@ -5,7 +5,7 @@
     }
     // Loại bỏ các đơn hàng có status_id = 5
     $orders = array_filter($orders, function($order) {
-        return $order['status_id'] != 5;
+        return $order['status_id'] = 4 ;
     });
     $pageIndex=1;
     if(isset($_GET['page'])){
