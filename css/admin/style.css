@@ -508,3 +508,11 @@ body {
 .chiller-theme .sidebar-footer>a:last-child {
   border-right: none;
 }
+.sidebar-menu ul{
+
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+  
+}
