@@ -267,3 +267,26 @@
             </ul>
         </div>
     </header>
+    <style>
+/* Logo styling */
+.logo img {
+    width: 150px; /* Tăng kích thước logo */
+    height: auto; /* Giữ tỷ lệ khung hình */
+    object-fit: contain; /* Đảm bảo logo không bị méo */
+    transition: transform 0.3s ease; /* Hiệu ứng mượt mà */
+}
+
+/* Điều chỉnh padding/margin để cân bằng */
+.logo {
+    padding: 10px 0; /* Thêm khoảng cách dọc */
+    display: flex;
+    align-items: center; /* Căn giữa logo theo chiều dọc */
+}
+
+/* Responsive cho mobile */
+@media (max-width: 767px) {
+    .logo img {
+        width: 100px; /* Giảm kích thước logo trên mobile */
+    }
+}
+</style>

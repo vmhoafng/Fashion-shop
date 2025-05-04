@@ -1,7 +1,7 @@
 <?php 
 $Products=loadSanPham_Product();
-
 ?>
+
 <!-- Cart -->
 <div class="wrap-header-cart js-panel-cart">
 	<div class="s-full js-hide-cart"></div>
@@ -87,7 +87,6 @@ $Products=loadSanPham_Product();
 	</div>
 </div>
 
-
 <!-- Banner -->
 <div class="sec-banner bg0">
 	<div class="flex-w flex-c-m">
@@ -168,8 +167,6 @@ $Products=loadSanPham_Product();
 	</div>
 </div>
 
-
-<!-- Product -->
 <!-- Product -->
 <section class="sec-product bg0 p-t-100 p-b-50">
 	<div class="container">
@@ -212,11 +209,7 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-01.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
-
-									
 								</div>
 							</div>
 
@@ -225,11 +218,7 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-02.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
-
-									
 								</div>
 							</div>
 
@@ -238,11 +227,7 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-03.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
-
-									
 								</div>
 							</div>
 
@@ -251,11 +236,7 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-04.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
-
-									
 								</div>
 							</div>
 
@@ -264,11 +245,7 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-05.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
-
-									
 								</div>
 							</div>
 
@@ -277,11 +254,7 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-10.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
-
-									
 								</div>
 							</div>
 
@@ -290,11 +263,7 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-07.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
-
-									
 								</div>
 							</div>
 
@@ -303,11 +272,7 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-08.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
-
-									
 								</div>
 							</div>
 						</div>
@@ -324,8 +289,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-09.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -354,8 +317,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-10.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -384,8 +345,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-11.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -414,8 +373,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-12.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -444,8 +401,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-13.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -474,8 +429,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-14.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -504,8 +457,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-15.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -534,8 +485,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-16.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -572,8 +521,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-02.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -602,8 +549,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-04.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -632,8 +577,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-06.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -662,8 +605,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-09.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -692,8 +633,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-11.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -722,8 +661,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-13.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -752,8 +689,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-15.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -790,8 +725,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-03.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -820,8 +753,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-06.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -850,8 +781,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-07.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -880,8 +809,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-08.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -910,8 +837,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-09.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -940,8 +865,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-10.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -970,8 +893,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-11.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -1000,8 +921,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-12.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -1030,8 +949,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-13.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -1060,8 +977,6 @@ $Products=loadSanPham_Product();
 								<div class="block2">
 									<div class="block2-pic hov-img0">
 										<img src="images/product-16.jpg" alt="IMG-PRODUCT">
-
-										
 									</div>
 
 									<div class="block2-txt flex-w flex-t p-t-14">
@@ -1092,9 +1007,8 @@ $Products=loadSanPham_Product();
 	</div>
 </section>
 
-
 <!-- Blog -->
-<section class="sec-blog bg0 p-t-60 p-b-90">
+<section class="sec-blog bg-light p-t-60 p-b-90">
 	<div class="container">
 		<div class="p-b-66">
 			<h3 class="ltext-105 cl5 txt-center respon1">
@@ -1106,44 +1020,31 @@ $Products=loadSanPham_Product();
 			<div class="col-sm-6 col-md-4 p-b-40">
 				<div class="blog-item">
 					<div class="hov-img0">
-						<a href="blog.php">
-							<img src="images/blog-01.jpg" alt="IMG-BLOG">
-						</a>
+						<img src="images/blog-01.jpg" alt="IMG-BLOG" class="blog-image">
 					</div>
 
 					<div class="p-t-15">
-						<div class="stext-107 flex-w p-b-14">
+						<div class="stext-107 flex-w p-b-14 blog-meta">
 							<span class="m-r-3">
-								<span class="cl4">
-									By
-								</span>
-
-								<span class="cl5">
-									Nancy Ward
-								</span>
+								<span class="cl4">By</span>
+								<span class="cl5">Nancy Ward</span>
 							</span>
-
 							<span>
-								<span class="cl4">
-									on
-								</span>
-
-								<span class="cl5">
-									July 22, 2017
-								</span>
+								<span class="cl4">on</span>
+								<span class="cl5">July 22, 2017</span>
 							</span>
 						</div>
 
 						<h4 class="p-b-12">
-							<a href="blog.php" class="mtext-101 cl2 hov-cl1 trans-04">
+							<span class="mtext-101 cl2 blog-title">
 								8 Inspiring Ways to Wear Dresses in the Winter
-							</a>
+							</span>
 						</h4>
 
-						<p class="stext-108 cl6">
-							Duis ut velit gravida nibh bibendum commodo. Suspendisse pellentesque mattis augue id
-							euismod. Interdum et male-suada fames
+						<p class="stext-108 cl6 blog-description">
+							Duis ut velit gravida nibh bibendum commodo. Suspendisse pellentesque mattis augue id euismod. Interdum et male-suada fames
 						</p>
+						<button class="btn-read-more">Read More</button>
 					</div>
 				</div>
 			</div>
@@ -1151,44 +1052,31 @@ $Products=loadSanPham_Product();
 			<div class="col-sm-6 col-md-4 p-b-40">
 				<div class="blog-item">
 					<div class="hov-img0">
-						<a href="blog.php">
-							<img src="images/blog-02.jpg" alt="IMG-BLOG">
-						</a>
+						<img src="images/blog-02.jpg" alt="IMG-BLOG" class="blog-image">
 					</div>
 
 					<div class="p-t-15">
-						<div class="stext-107 flex-w p-b-14">
+						<div class="stext-107 flex-w p-b-14 blog-meta">
 							<span class="m-r-3">
-								<span class="cl4">
-									By
-								</span>
-
-								<span class="cl5">
-									Nancy Ward
-								</span>
+								<span class="cl4">By</span>
+								<span class="cl5">Nancy Ward</span>
 							</span>
-
 							<span>
-								<span class="cl4">
-									on
-								</span>
-
-								<span class="cl5">
-									July 18, 2017
-								</span>
+								<span class="cl4">on</span>
+								<span class="cl5">July 18, 2017</span>
 							</span>
 						</div>
 
 						<h4 class="p-b-12">
-							<a href="blog.php" class="mtext-101 cl2 hov-cl1 trans-04">
+							<span class="mtext-101 cl2 blog-title">
 								The Great Big List of Men’s Gifts for the Holidays
-							</a>
+							</span>
 						</h4>
 
-						<p class="stext-108 cl6">
-							Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex
-							nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit ame
+						<p class="stext-108 cl6 blog-description">
+							Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus.
 						</p>
+						<button class="btn-read-more">Read More</button>
 					</div>
 				</div>
 			</div>
@@ -1196,51 +1084,37 @@ $Products=loadSanPham_Product();
 			<div class="col-sm-6 col-md-4 p-b-40">
 				<div class="blog-item">
 					<div class="hov-img0">
-						<a href="blog.php">
-							<img src="images/blog-03.jpg" alt="IMG-BLOG">
-						</a>
+						<img src="images/blog-03.jpg" alt="IMG-BLOG" class="blog-image">
 					</div>
 
 					<div class="p-t-15">
-						<div class="stext-107 flex-w p-b-14">
+						<div class="stext-107 flex-w p-b-14 blog-meta">
 							<span class="m-r-3">
-								<span class="cl4">
-									By
-								</span>
-
-								<span class="cl5">
-									Nancy Ward
-								</span>
+								<span class="cl4">By</span>
+								<span class="cl5">Nancy Ward</span>
 							</span>
-
 							<span>
-								<span class="cl4">
-									on
-								</span>
-
-								<span class="cl5">
-									July 2, 2017
-								</span>
+								<span class="cl4">on</span>
+								<span class="cl5">July 2, 2017</span>
 							</span>
 						</div>
 
 						<h4 class="p-b-12">
-							<a href="blog.php" class="mtext-101 cl2 hov-cl1 trans-04">
+							<span class="mtext-101 cl2 blog-title">
 								5 Winter-to-Spring Fashion Trends to Try Now
-							</a>
+							</span>
 						</h4>
 
-						<p class="stext-108 cl6">
-							Proin nec vehicula lorem, a efficitur ex. Nam vehicula nulla vel erat tincidunt, sed
-							hendrerit ligula porttitor. Fusce sit amet maximus nunc
+						<p class="stext-108 cl6 blog-description">
+							Proin nec vehicula lorem, a efficitur ex. Nam vehicula nulla vel erat tincidunt, sed hendrerit ligula porttitor. Fusce sit amet maximus nunc
 						</p>
+						<button class="btn-read-more">Read More</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
 
 <!-- Modal1 -->
 <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
@@ -1305,8 +1179,7 @@ $Products=loadSanPham_Product();
 						</span>
 
 						<p class="stext-102 cl3 p-t-23">
-							Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat
-							ornare feugiat.
+							Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
 						</p>
 
 						<!--  -->
@@ -1396,3 +1269,118 @@ $Products=loadSanPham_Product();
 		</div>
 	</div>
 </div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+.bg-light {
+    background-color: #f9fafb !important;
+}
+
+.sec-blog .container {
+    max-width: 1200px;
+}
+
+.blog-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.hov-img0 {
+    overflow: hidden;
+}
+
+.blog-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    pointer-events: none;
+    cursor: default;
+    transition: transform 0.3s ease;
+}
+
+.blog-item:hover .blog-image {
+    transform: scale(1.03);
+}
+
+.p-t-15 {
+    padding: 20px;
+}
+
+.blog-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: #6b7280;
+    justify-content: center;
+    gap: 15px;
+}
+
+.blog-meta .cl4 {
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.blog-meta .cl5 {
+    color: #6b7280;
+}
+
+.blog-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #1e40af;
+    line-height: 1.4;
+    display: block;
+}
+
+.blog-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #4b5563;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 15px;
+}
+
+.btn-read-more {
+    background: #1e40af;
+    color: #ffffff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    cursor: default;
+    transition: background 0.3s ease;
+}
+
+.btn-read-more:hover {
+    background: #1e3a8a;
+}
+
+@media (max-width: 767px) {
+    .blog-item {
+        margin-bottom: 30px;
+    }
+    .blog-image {
+        height: 200px;
+    }
+    .blog-title {
+        font-size: 1.2rem;
+    }
+}
+</style>
