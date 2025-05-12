@@ -7,7 +7,7 @@
     if(isset($_GET['page'])){
         $pageIndex=$_GET['page'];
     }
-    $pageSize=1;
+    $pageSize=5;
     $totalPage=ceil(count($billdetails)/$pageSize);
     $billdetails=array_slice($billdetails,($pageIndex-1)*$pageSize,$pageSize);
     
