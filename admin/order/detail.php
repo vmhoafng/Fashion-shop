@@ -7,7 +7,7 @@ $pageIndex=1;
 if(isset($_GET['page'])){
     $pageIndex=$_GET['page'];
 }
-$pageSize=1;
+$pageSize=5;
 $totalPage=ceil(count($orderDetails)/$pageSize);
 $orderDetails=array_slice($orderDetails,($pageIndex-1)*$pageSize,$pageSize);
 ?>

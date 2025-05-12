@@ -61,59 +61,60 @@
 
     <script>
         function validateForm() {
-            var email = document.querySelector('input[name="email"]').value;
-            var password = document.querySelector('input[name="password"]').value;
-            var username = document.querySelector('input[name="username"]').value;
-            var phone = document.querySelector('input[name="phone"]').value;
-            var address = document.querySelector('input[name="address"]').value;
+    var email = document.querySelector('input[name="email"]').value;
+    var password = document.querySelector('input[name="password"]').value;
+    var username = document.querySelector('input[name="username"]').value;
+    var phone = document.querySelector('input[name="phone"]').value;
+    var address = document.querySelector('input[name="address"]').value;
 
-            var emailError = document.getElementById('email-error');
-            var passwordError = document.getElementById('password-error');
-            var usernameError = document.getElementById('username-error');
-            var phoneError = document.getElementById('phone-error');
-            var addressError = document.getElementById('address-error');
+    var emailError = document.getElementById('email-error');
+    var passwordError = document.getElementById('password-error');
+    var usernameError = document.getElementById('username-error');
+    var phoneError = document.getElementById('phone-error');
+    var addressError = document.getElementById('address-error');
 
-            var check = true;
+    var check = true;
 
-            if (email === '') {
-                emailError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Email không hợp lệ.';
-                check = false;
-            } else {
-                emailError.textContent = '';
-            }
+    // Validate password
+    var passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$/;
+    if (!passwordRegex.test(password)) {
+        passwordError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Mật khẩu phải trên 6 ký tự, chứa chữ và số.';
+        check = false;
+    } else {
+        passwordError.textContent = '';
+    }
 
-            // \s => check exist space ' '
-            if (/\s/.test(password) || password === '') {
-                passwordError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Mật khẩu không hợp lệ.';
-                check = false;
-            } else {
-                passwordError.textContent = '';
-            }
+    // Existing validations...
+    if (/\s/.test(password) || password === '') {
+        passwordError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Mật khẩu không hợp lệ.';
+        check = false;
+    } else if (passwordError.textContent === '') {
+        passwordError.textContent = '';
+    }
 
-            // trim => skip space ' ' at start and end line
-            if (username.trim() === '') {
-                usernameError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Tên không hợp lệ.';
-                check = false;
-            } else {
-                usernameError.textContent = '';
-            }
+    if (username.trim() === '') {
+        usernameError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Tên không hợp lệ.';
+        check = false;
+    } else {
+        usernameError.textContent = '';
+    }
 
-            if (/^[0][0-9]{9}$/.test(phone)) {
-                phoneError.textContent = '';
-            } else {
-                phoneError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Số điện thoại không hợp lệ.';
-                check = false;
-            }
+    if (/^[0][0-9]{9}$/.test(phone)) {
+        phoneError.textContent = '';
+    } else {
+        phoneError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Số điện thoại không hợp lệ.';
+        check = false;
+    }
 
-            if (address === '') {
-                addressError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Địa chỉ không hợp lệ.';
-                check = false;
-            } else {
-                addressError.textContent = '';
-            }
+    if (address === '') {
+        addressError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Địa chỉ không hợp lệ.';
+        check = false;
+    } else {
+        addressError.textContent = '';
+    }
 
-            return check;
-        }
+    return check;
+}
     </script>
 
 </div>

@@ -61,7 +61,7 @@
 
     $title = isset($titles[$current_page]) ? $titles[$current_page] : '';
     ?>
-    
+
     <title> <?php echo $title ?> </title>
 </head>
 
@@ -84,28 +84,27 @@
                     if (isset($_SESSION['user'])) {
                         extract($_SESSION['user']); ?>
 
-                    <div class="right-top-bar flex-w h-full ml-auto">
-                        <a href="index.php?ac=signout" class="flex-c-m trans-04 p-lr-25">
-                        Signout &nbsp;
-                            <i class="fas fa-sign-out-alt"></i>
-                        </a>
-                    </div>
+                        <div class="right-top-bar flex-w h-full ml-auto">
+                            <a href="index.php?ac=signout" class="flex-c-m trans-04 p-lr-25">
+                                Signout &nbsp;
+                                <i class="fas fa-sign-out-alt"></i>
+                            </a>
+                        </div>
 
-                    <div class="right-top-bar flex-w h-full">
-                        <a href="index.php?ac=userdetail" class="flex-c-m trans-04 p-lr-25" style="color: pink;">
-                            <?= $user_name ?> &nbsp;
-                            <i class="fa fa-heart" style="color:red"></i>
-                        </a>
-                    </div>
+                        <div class="right-top-bar flex-w h-full">
+                            <a href="index.php?ac=userdetail" class="flex-c-m trans-04 p-lr-25" style="color: pink;">
+                                <?= $user_name ?> &nbsp;
+                            </a>
+                        </div>
 
                     <?php } else { ?>
 
-                    <div class="right-top-bar flex-w h-full">
-                        <a href="index.php?ac=signin" class="flex-c-m trans-04 p-lr-25">
-                            Signin &nbsp;
-                            <i class="fa fa-power-off"></i>
-                        </a>
-                    </div>
+                        <div class="right-top-bar flex-w h-full">
+                            <a href="index.php?ac=signin" class="flex-c-m trans-04 p-lr-25">
+                                Signin &nbsp;
+                                <i class="fa fa-power-off"></i>
+                            </a>
+                        </div>
 
                     <?php } ?>
 
@@ -132,29 +131,26 @@
                             <li class=" <?php if ($current_page == 'cart') echo 'active-menu'; ?> ">
                                 <a href="index.php?ac=cart">
                                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-36 p-r-11 icon-header-noti js-show-cart"
-                            data-notify="<?php 
-                                //$_SESSION['sum_quantity_no_login']
-                                if(isset($_SESSION['user'])) {
-                                    if(isset($_SESSION['sum_product_cart'])) {
-                                        echo $_SESSION['sum_product_cart'];
-                                    }
-                                    else {
-                                        echo "0";
-                                    }
-                                }
-                                else {
-                                    if(isset($_SESSION['sum_quantity_no_login'])) {
-                                        echo $_SESSION['sum_quantity_no_login'];
-                                    }
-                                    else {
-                                        echo "0";
-                                    }
-                                }
-                                 ?>">
-                            <!-- document.getElementById('cart-number').innerText = '".$total."'; -->
-                        </div>
-                        Cart
-                        </a>
+                                        data-notify="<?php
+                                                        //$_SESSION['sum_quantity_no_login']
+                                                        if (isset($_SESSION['user'])) {
+                                                            if (isset($_SESSION['sum_product_cart'])) {
+                                                                echo $_SESSION['sum_product_cart'];
+                                                            } else {
+                                                                echo "0";
+                                                            }
+                                                        } else {
+                                                            if (isset($_SESSION['sum_quantity_no_login'])) {
+                                                                echo $_SESSION['sum_quantity_no_login'];
+                                                            } else {
+                                                                echo "0";
+                                                            }
+                                                        }
+                                                        ?>">
+                                        <!-- document.getElementById('cart-number').innerText = '".$total."'; -->
+                                    </div>
+                                    Cart
+                                </a>
                             </li>
 
                             <li class="label1 <?php if ($current_page == 'product') echo 'active-menu'; ?> "
@@ -185,12 +181,12 @@
                     </div>
 
                     <!-- Icon header -->
-             
-                            <!-- document.getElementById('cart-number').innerText = '".$total."'; -->
-                        </div>
-                    </div>
-                </nav>
+
+                    <!-- document.getElementById('cart-number').innerText = '".$total."'; -->
             </div>
+        </div>
+        </nav>
+        </div>
         </div>
 
         <!-- Header Mobile -->
@@ -201,7 +197,7 @@
             </div>
 
             <!-- Icon header -->
-         
+
             <!-- Button show menu -->
             <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
                 <span class="hamburger-box">
@@ -239,19 +235,19 @@
                 </li>
 
                 <li>
-    <a href="shoping-cart.php" class="flex-l-m stext-107 cl6 size-301 bor1 p-lr-15 trans-04">
-        Cart
-        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-12 icon-header-noti js-show-cart label1 rs1"
-        data-label1="<?php
-                 if(isset($_SESSION['user'])) {
-                     echo isset($_SESSION['sum_product_cart']) ? $_SESSION['sum_product_cart'] : '0';
-                 } else {
-                     echo isset($_SESSION['sum_quantity_no_login']) ? $_SESSION['sum_quantity_no_login'] : '0';
-                 }
-              ?>">
-        </div>
-    </a>
-</li>
+                    <a href="shoping-cart.php" class="flex-l-m stext-107 cl6 size-301 bor1 p-lr-15 trans-04">
+                        Cart
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-12 icon-header-noti js-show-cart label1 rs1"
+                            data-label1="<?php
+                                            if (isset($_SESSION['user'])) {
+                                                echo isset($_SESSION['sum_product_cart']) ? $_SESSION['sum_product_cart'] : '0';
+                                            } else {
+                                                echo isset($_SESSION['sum_quantity_no_login']) ? $_SESSION['sum_quantity_no_login'] : '0';
+                                            }
+                                            ?>">
+                        </div>
+                    </a>
+                </li>
 
                 <li>
                     <a href="blog.php">Blog</a>
@@ -268,25 +264,32 @@
         </div>
     </header>
     <style>
-/* Logo styling */
-.logo img {
-    width: 150px; /* Tăng kích thước logo */
-    height: auto; /* Giữ tỷ lệ khung hình */
-    object-fit: contain; /* Đảm bảo logo không bị méo */
-    transition: transform 0.3s ease; /* Hiệu ứng mượt mà */
-}
+        /* Logo styling */
+        .logo img {
+            width: 150px;
+            /* Tăng kích thước logo */
+            height: auto;
+            /* Giữ tỷ lệ khung hình */
+            object-fit: contain;
+            /* Đảm bảo logo không bị méo */
+            transition: transform 0.3s ease;
+            /* Hiệu ứng mượt mà */
+        }
 
-/* Điều chỉnh padding/margin để cân bằng */
-.logo {
-    padding: 10px 0; /* Thêm khoảng cách dọc */
-    display: flex;
-    align-items: center; /* Căn giữa logo theo chiều dọc */
-}
+        /* Điều chỉnh padding/margin để cân bằng */
+        .logo {
+            padding: 10px 0;
+            /* Thêm khoảng cách dọc */
+            display: flex;
+            align-items: center;
+            /* Căn giữa logo theo chiều dọc */
+        }
 
-/* Responsive cho mobile */
-@media (max-width: 767px) {
-    .logo img {
-        width: 100px; /* Giảm kích thước logo trên mobile */
-    }
-}
-</style>
+        /* Responsive cho mobile */
+        @media (max-width: 767px) {
+            .logo img {
+                width: 100px;
+                /* Giảm kích thước logo trên mobile */
+            }
+        }
+    </style>

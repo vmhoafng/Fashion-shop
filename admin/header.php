@@ -50,7 +50,6 @@
                         <span class="user-name">
                             <strong>
                                 <?= $user_name ?>&nbsp;
-                                <i class="fa fa-heart" style="color:red"></i>
                             </strong>
                         </span>
 
