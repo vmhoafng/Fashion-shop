@@ -507,6 +507,80 @@ if (isset($_GET['ac']) && $_GET['ac'] != "") {
 			break;
 
 
+		case 'signin':
+			if (isset($_POST['signin']) && ($_POST['signin'])) {
+				$email = $_POST['email'];
+				$password = $_POST['password'];
+
+				$result = check_user($email, $password);
+
+				if (is_array($result)) {
+					if ($result['role_id'] == 2) {
+						// Chặn admin đăng nhập qua trang client
+						$notice = "Đăng nhập thất bại. Vui lòng kiểm tra email/mật khẩu hoặc quyền truy cập.";
+					} else {
+						// Xử lý đăng nhập cho client
+						$_SESSION['user'] = $result;
+						$_SESSION['sum_product_cart'] = get_quantity_product($_SESSION['user']['user_id']);
+
+						// Kiểm tra giỏ hàng có chưa
+						// có thì lấy session ghi đè
+						// chưa thì đổ vào cart
+						$list_id_product = get_list_code_product($_SESSION['user']['user_id']);
+						if (!empty($list_id_product) && !empty($_SESSION['cart_no_login'])) {
+							// xóa sạch cart detail theo id
+							$cart_info = get_info_user_cart($_SESSION['user']['user_id']);
+							extract($cart_info);
+
+							delete_cart_detail($cart_id);
+
+							// đổ session cart dô theo card id
+							foreach ($_SESSION['cart_no_login'] as $i) {
+								insert_cartdetail($cart_id, $i[0], $i[1]);
+							}
+
+							$_SESSION['cart_no_login'] = [];
+							$_SESSION['sum_product_cart'] = $_SESSION['sum_quantity_no_login'];
+							$_SESSION['sum_quantity_no_login'] = 0;
+						}
+
+						if (empty($list_id_product) && !empty($_SESSION['cart_no_login'])) {
+							// kiểm tra user đã có id cart chưa
+							$info_cart = get_info_user_cart($_SESSION['user']['user_id']);
+							if ($info_cart) {
+								extract($info_cart);
+
+								// đổ session cart dô theo card id
+								foreach ($_SESSION['cart_no_login'] as $i) {
+									insert_cartdetail($cart_id, $i[0], $i[1]);
+								}
+
+								$_SESSION['cart_no_login'] = [];
+								$_SESSION['sum_product_cart'] = $_SESSION['sum_quantity_no_login'];
+								$_SESSION['sum_quantity_no_login'] = 0;
+							} else {
+								$id_cart = insert_cart($_SESSION['user']['user_id']);
+
+								// đổ session cart dô theo card id
+								foreach ($_SESSION['cart_no_login'] as $i) {
+									insert_cartdetail($id_cart, $i[0], $i[1]);
+								}
+
+								$_SESSION['cart_no_login'] = [];
+								$_SESSION['sum_product_cart'] = $_SESSION['sum_quantity_no_login'];
+								$_SESSION['sum_quantity_no_login'] = 0;
+							}
+						}
+
+						header('Location: index.php');
+					}
+				} else {
+					$notice = "Đăng nhập thất bại.";
+				}
+			}
+			include "view/account/signin.php";
+			break;
+
 		case 'admin_signin':
 			if (isset($_POST['signin']) && ($_POST['signin'])) {
 				$email = $_POST['email'];
